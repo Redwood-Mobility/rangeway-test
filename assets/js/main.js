@@ -7,18 +7,35 @@ const html = document.documentElement;
 
 // Check for saved theme preference or default to system preference
 const savedTheme = localStorage.getItem('theme');
-const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+const prefersDarkQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
-if (savedTheme) {
-  html.setAttribute('data-theme', savedTheme);
-  updateThemeIcon(savedTheme);
-} else if (prefersDark) {
-  html.setAttribute('data-theme', 'dark');
-  updateThemeIcon('dark');
-} else {
-  html.setAttribute('data-theme', 'light');
-  updateThemeIcon('light');
+function applyTheme(theme) {
+  html.setAttribute('data-theme', theme);
+  updateThemeIcon(theme);
 }
+
+function updateThemeIcon(theme) {
+  if (themeIcon) {
+    themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+  }
+}
+
+// Initialize theme
+if (savedTheme) {
+  // User has explicitly chosen a theme
+  applyTheme(savedTheme);
+} else {
+  // Follow system preference
+  applyTheme(prefersDarkQuery.matches ? 'dark' : 'light');
+}
+
+// Listen for system theme changes (e.g., macOS auto dark mode at sunset)
+prefersDarkQuery.addEventListener('change', (e) => {
+  // Only auto-switch if user hasn't set a preference
+  if (!localStorage.getItem('theme')) {
+    applyTheme(e.matches ? 'dark' : 'light');
+  }
+});
 
 // Theme toggle button click handler
 if (themeToggle) {
@@ -26,16 +43,9 @@ if (themeToggle) {
     const currentTheme = html.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
-    html.setAttribute('data-theme', newTheme);
+    applyTheme(newTheme);
     localStorage.setItem('theme', newTheme);
-    updateThemeIcon(newTheme);
   });
-}
-
-function updateThemeIcon(theme) {
-  if (themeIcon) {
-    themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
-  }
 }
 
 // Navbar scroll effect
