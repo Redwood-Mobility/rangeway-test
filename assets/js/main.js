@@ -1,52 +1,20 @@
 // Rangeway Energy - Main JavaScript
 
-// Theme Toggle Functionality
-const themeToggle = document.getElementById('themeToggle');
-const themeIcon = document.getElementById('themeIcon');
+// Automatic Theme Detection (follows system preference)
 const html = document.documentElement;
-
-// Check for saved theme preference or default to system preference
-const savedTheme = localStorage.getItem('theme');
 const prefersDarkQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
 function applyTheme(theme) {
   html.setAttribute('data-theme', theme);
-  updateThemeIcon(theme);
 }
 
-function updateThemeIcon(theme) {
-  if (themeIcon) {
-    themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
-  }
-}
-
-// Initialize theme
-if (savedTheme) {
-  // User has explicitly chosen a theme
-  applyTheme(savedTheme);
-} else {
-  // Follow system preference
-  applyTheme(prefersDarkQuery.matches ? 'dark' : 'light');
-}
+// Initialize theme based on system preference
+applyTheme(prefersDarkQuery.matches ? 'dark' : 'light');
 
 // Listen for system theme changes (e.g., macOS auto dark mode at sunset)
 prefersDarkQuery.addEventListener('change', (e) => {
-  // Only auto-switch if user hasn't set a preference
-  if (!localStorage.getItem('theme')) {
-    applyTheme(e.matches ? 'dark' : 'light');
-  }
+  applyTheme(e.matches ? 'dark' : 'light');
 });
-
-// Theme toggle button click handler
-if (themeToggle) {
-  themeToggle.addEventListener('click', () => {
-    const currentTheme = html.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-    applyTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-  });
-}
 
 // Navbar scroll effect
 window.addEventListener('scroll', () => {
