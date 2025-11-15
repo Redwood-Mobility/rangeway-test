@@ -405,6 +405,7 @@ a:hover {
   display: flex;
   align-items: center;
   padding-top: 80px;
+  padding-bottom: 2rem;
   position: relative;
   overflow: hidden;
 }
@@ -786,6 +787,7 @@ footer {
 /* Services Section */
 .services {
   background: var(--bg-primary);
+  padding-top: 3rem !important;
 }
 
 /* Animations */
