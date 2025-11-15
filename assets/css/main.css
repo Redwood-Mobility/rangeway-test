@@ -628,27 +628,39 @@ section {
 }
 
 .cta .btn-primary {
-  background: white;
-  border-color: white;
-  color: var(--sunset-coral);
+  background: white !important;
+  border-color: white !important;
+  color: var(--sunset-coral) !important;
 }
 
 .cta .btn-primary:hover {
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--accent-hover);
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: var(--accent-hover) !important;
   transform: translateY(-2px);
 }
 
 .cta .btn-secondary {
-  background: transparent;
-  border-color: white;
-  color: white;
+  background: transparent !important;
+  border-color: white !important;
+  color: white !important;
 }
 
 .cta .btn-secondary:hover {
-  background: white;
-  color: #2C3E50;
+  background: white !important;
+  color: #2C3E50 !important;
   transform: translateY(-2px);
+}
+
+/* Pathfinder Rewards CTA Button */
+.pathfinder-cta-btn {
+  background: white !important;
+  border-color: white !important;
+  color: var(--sunset-coral) !important;
+}
+
+.pathfinder-cta-btn:hover {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: var(--accent-hover) !important;
 }
 
 /* Footer */
