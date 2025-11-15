@@ -504,8 +504,14 @@ a:hover {
 
 /* Sections */
 section {
-  padding: 6rem 0;
+  padding: 4rem 0;
   position: relative;
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 3rem 0;
+  }
 }
 
 .section-header {
