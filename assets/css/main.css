@@ -672,6 +672,20 @@ section {
   .feature-grid:nth-child(even) {
     direction: ltr;
   }
+
+  /* Grand Canyon route - image on top on mobile */
+  .grand-canyon-route {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .grand-canyon-route .feature-image {
+    order: -1;
+  }
+
+  .grand-canyon-route .feature-content {
+    order: 1;
+  }
 }
 
 /* CTA Section */
