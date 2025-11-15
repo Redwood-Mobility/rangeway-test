@@ -420,6 +420,7 @@ a:hover {
 @media (max-width: 968px) {
   .hero {
     padding-top: 120px;
+    padding-bottom: 0;
   }
 
   .hero-grid {
