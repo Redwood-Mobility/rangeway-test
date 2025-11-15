@@ -313,9 +313,53 @@ a:hover {
   transition: all var(--transition-fast);
 }
 
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.mobile-menu-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Mobile Menu Close Button */
+.mobile-menu-close {
+  display: none;
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: all var(--transition-fast);
+  z-index: 1001;
+}
+
+.mobile-menu-close:hover {
+  color: var(--accent-color);
+  transform: rotate(90deg);
+}
+
 @media (max-width: 768px) {
   .menu-toggle {
     display: flex;
+  }
+
+  .mobile-menu-close {
+    display: block;
   }
 
   .navbar-nav {
@@ -331,6 +375,7 @@ a:hover {
     align-items: flex-start;
     box-shadow: -4px 0 20px var(--shadow-medium);
     transition: right var(--transition-normal);
+    z-index: 999;
   }
 
   .navbar-nav.active {

@@ -61,11 +61,47 @@ window.addEventListener('scroll', () => {
 // Mobile menu toggle
 const menuToggle = document.getElementById('menuToggle');
 const navMenu = document.getElementById('navMenu');
+const mobileMenuClose = document.getElementById('mobileMenuClose');
+const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
 
+function openMobileMenu() {
+  navMenu.classList.add('active');
+  menuToggle.classList.add('active');
+  mobileMenuOverlay.classList.add('active');
+  document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+}
+
+function closeMobileMenu() {
+  navMenu.classList.remove('active');
+  menuToggle.classList.remove('active');
+  mobileMenuOverlay.classList.remove('active');
+  document.body.style.overflow = ''; // Restore scrolling
+}
+
+// Open menu with hamburger button
 if (menuToggle) {
-  menuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    menuToggle.classList.toggle('active');
+  menuToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (navMenu.classList.contains('active')) {
+      closeMobileMenu();
+    } else {
+      openMobileMenu();
+    }
+  });
+}
+
+// Close menu with X button
+if (mobileMenuClose) {
+  mobileMenuClose.addEventListener('click', (e) => {
+    e.stopPropagation();
+    closeMobileMenu();
+  });
+}
+
+// Close menu when clicking overlay
+if (mobileMenuOverlay) {
+  mobileMenuOverlay.addEventListener('click', () => {
+    closeMobileMenu();
   });
 }
 
@@ -73,19 +109,8 @@ if (menuToggle) {
 const navLinks = document.querySelectorAll('.navbar-nav a');
 navLinks.forEach(link => {
   link.addEventListener('click', () => {
-    navMenu.classList.remove('active');
-    if (menuToggle) {
-      menuToggle.classList.remove('active');
-    }
+    closeMobileMenu();
   });
-});
-
-// Close mobile menu when clicking outside
-document.addEventListener('click', (e) => {
-  if (navMenu && menuToggle && !navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-    navMenu.classList.remove('active');
-    menuToggle.classList.remove('active');
-  }
 });
 
 // Smooth scroll for anchor links
