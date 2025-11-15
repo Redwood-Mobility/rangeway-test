@@ -1,0 +1,23 @@
+# Site settings
+title: "Rangeway Energy"
+description: "Premium EV charging network built for scenic corridors"
+baseurl: ""
+url: "https://rangeway-test.github.io"
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .sass-cache
+  - .jekyll-cache
+
+# Asset versioning
+asset_version: "1.0.0"

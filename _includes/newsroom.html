@@ -1,0 +1,47 @@
+<section class="newsroom" id="newsroom">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Latest Updates</span>
+      <h2>Field Notes</h2>
+      <p>Stay updated on our journey to build America's premier scenic-route charging network</p>
+    </div>
+
+    <div id="newsroom-content" class="grid grid-3">
+      <div class="card text-center" style="grid-column: 1 / -1;">
+        <p style="color: var(--text-secondary);">Loading latest updates...</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Fetch latest newsroom posts
+  fetch('https://newsroom.rangeway.energy/latest.json')
+    .then(response => response.json())
+    .then(data => {
+      const newsroomContent = document.getElementById('newsroom-content');
+
+      if (data && data.posts && data.posts.length > 0) {
+        const postsHTML = data.posts.slice(0, 3).map(post => `
+          <div class="card">
+            ${post.image ? `<img src="${post.image}" alt="${post.title}" style="width: 100%; border-radius: 12px; margin-bottom: 1.5rem;">` : ''}
+            <div style="display: inline-block; background: rgba(240, 144, 96, 0.1); color: var(--primary); padding: 0.35rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem;">${post.type || 'Update'}</div>
+            <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">${post.title}</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">${post.excerpt || ''}</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; color: var(--text-light); font-size: 0.9rem;">
+              <span>${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+              ${post.url ? `<a href="${post.url}" target="_blank" rel="noopener" style="color: var(--primary); font-weight: 600;">Read more →</a>` : ''}
+            </div>
+          </div>
+        `).join('');
+
+        newsroomContent.innerHTML = postsHTML;
+      } else {
+        newsroomContent.innerHTML = '<div class="card text-center" style="grid-column: 1 / -1;"><p>No updates available at this time. Check back soon!</p></div>';
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching newsroom:', error);
+      document.getElementById('newsroom-content').innerHTML = '<div class="card text-center" style="grid-column: 1 / -1;"><p>Visit our <a href="https://newsroom.rangeway.energy" target="_blank" rel="noopener">Newsroom</a> for the latest updates.</p></div>';
+    });
+</script>
