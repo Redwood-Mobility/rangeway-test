@@ -654,13 +654,14 @@ section {
 /* Pathfinder Rewards CTA Button */
 .pathfinder-cta-btn {
   background: white !important;
-  border-color: white !important;
-  color: var(--sunset-coral) !important;
+  border: 2px solid white !important;
+  color: #F09060 !important;
 }
 
 .pathfinder-cta-btn:hover {
   background: rgba(255, 255, 255, 0.9) !important;
-  color: var(--accent-hover) !important;
+  color: #e07a48 !important;
+  transform: translateY(-2px);
 }
 
 /* Footer */
