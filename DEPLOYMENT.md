@@ -16,7 +16,7 @@ Then visit your GitHub repo and enable Pages (see step 3 below).
 **1. Create a new repository on GitHub**
 - Go to https://github.com/new
 - Repository name: `rangeway-test`
-- Description: `Modern single-page Rangeway Energy site with HyWatts-inspired design`
+- Description: `Modern single-page Rangeway site with HyWatts-inspired design`
 - Visibility: Public
 - Do NOT initialize with README, .gitignore, or license (we already have these)
 - Click "Create repository"

@@ -1,4 +1,4 @@
-// Rangeway Energy - Main JavaScript
+// Rangeway - Main JavaScript
 
 // Automatic Theme Detection (follows system preference)
 const html = document.documentElement;

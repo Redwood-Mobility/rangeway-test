@@ -1,6 +1,6 @@
-# Rangeway Energy - Modern Test Site
+# Rangeway - Modern Test Site
 
-A modern, single-page website for Rangeway Energy, inspired by contemporary tech aesthetics (HyWatts.com).
+A modern, single-page website for Rangeway, inspired by contemporary tech aesthetics (HyWatts.com).
 
 ## Features
 
